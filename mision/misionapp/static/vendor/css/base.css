@@ -1,0 +1,28 @@
+@import "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+
+
+body {
+    background-color:white;
+   
+}
+
+footer {
+    margin-top: 30px;
+    height: 80px;
+    width: 100%;
+    
+    bottom: 0 ;
+    border: none; 
+  
+ 
+}
+
+.icono {
+    width: 40px;
+    height: 40px;
+}
+
+.navbar-nav {
+    margin-right: 80px;
+}
+

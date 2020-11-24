@@ -1,0 +1,79 @@
+{% extends "base.html"%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{%block content%}
+ 
+  <link rel="stylesheet" href="{% static 'vendor/css/agregar.css' %}">
+
+  <div class="container-fluid mt-5">
+    <div class="row">
+        <div class=" mr-auto col-lg-3 offset-lg-1">
+          <div class="card">
+            <div class="card-body">
+              <h3 class="card-title text-center">Ingreso Articulos Nuevos</h3>
+              <form  class="mt-5" action="" method="post">
+                {% csrf_token%}
+                
+                {{ form | crispy }}
+
+                <div class=" justify-content-center">
+                    
+                  <input type="submit" value="Guardar" class="btn btn-primary form-control ">
+
+                </div>                      
+              </form>
+              
+                {{mensaje}}
+                
+            </div>
+          </div>
+        </div>    
+        <div class=" col-lg-6 mr-auto">
+          <div class="card">
+            <div class="card-body mx-auto">
+              <h3 class="card-title text-center">Busqueda Articulos</h3>
+              <form action="" method="get" class="mt-4">
+                {{filtro.form}}
+                <input type="submit" class="btn btn-success">
+              </form>
+             
+            </div>
+          </div>
+          <table class="table mt-5" name="datos-articulos">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Categoria</th>
+                <th scope="col">Opciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                {% for a in articulos %}
+                <tr>
+                  <td>{{ a.id}}</td>
+                  <td>{{ a.descripcion}}</td>
+                  <td>${{ a.precio}}</td>
+                  <td>{{ a.categoria}}</td>
+                  <td><a href="{% url 'actualiza_articulo' a.id %}" class="text-primary"><i class="fa fa-edit fa-2x icono_actualizar"></i></a>
+                      <a href="#" onclick="confirmarEliminacion({{a.id}})" class="text-danger"><i class="fa fa-trash fa-2x"></i></a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+  </div>
+
+{%endblock%}
+
+{% block javascript %}
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <script src="{% static 'vendor/js/confirmacion.js' %}"></script>
+
+{% endblock %}

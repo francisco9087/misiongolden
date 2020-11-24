@@ -1,0 +1,36 @@
+{% extends "base.html"  %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content%}
+
+    
+    <link rel="stylesheet" href="{% static 'vendor/css/login.css' %}"> 
+      <div class="container fomulario-ingreso mt-5">
+          <div class="row">
+              <div class="col-9 col-md-6 offset-md-3 mt-5">
+                  <div class="card">
+                      <div class="card-body">
+                          
+                        <h2>Ingreso</h2>
+                        <br>
+                        <br>
+                          <form action="" method="post">
+                            {% csrf_token %}
+                            {{ form|crispy}}
+                            
+                            <input type="submit" value="INGRESAR" class="form-control btn btn-success">
+                          </form>
+                         
+
+                          
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+       
+        
+    
+{% endblock %}
